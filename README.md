@@ -112,7 +112,7 @@ Professor (1) ─── (N) Turma (1) ─── (N) Aluno
 
 1. *Clonar o repositório*
    ```bash
-   git clone https://github.com/gabrielly-soares-marinho/Projeto_FLASK_API.git
+   git clone https://github.com/MauricioMonteiro012/API---Microservi-os.git
    cd Projeto_FLASK_API
 
 
@@ -122,7 +122,7 @@ Professor (1) ─── (N) Turma (1) ─── (N) Aluno
 ## Como rodar (Docker)
 
 1. Clone seu repositório localmente (se já não estiver):
-   git clone <https://github.com/gabrielly-soares-marinho/Projeto_FLASK_API>
+   git clone https://github.com/MauricioMonteiro012/API---Microservi-os.git
 2. Coloque as pastas `gerenciamento`, `reservas`, `atividades` com os arquivos descritos.
 3. Execute:
    docker compose up --build
@@ -131,6 +131,12 @@ Os serviços ficarão acessíveis em:
 - Gerenciamento: http://localhost:5001
 - Reservas: http://localhost:5002
 - Atividades: http://localhost:5003
+
+## Como rodar o Swagger
+- # No PowerShell do Windows:
+$env:FLASK_APP = "app.py"
+flask run --host=0.0.0.0 --port=5000
+http://127.0.0.1:5000/apidocs
 
 ## Endpoints (exemplos)
 - GET /turmas (gerenciamento)
