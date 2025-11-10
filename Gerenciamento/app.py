@@ -1,8 +1,28 @@
-from app.__init__ import *
+from flask import Blueprint, jsonify, request
 
-app = create_app()
+bp = Blueprint('gerenciamento', __name__)
 
-if __name__ == "__main__":
-    with app.app_context():
-        db.create_all()
-    app.run(host="0.0.0.0", port=5000, debug=True)
+professores = []
+professor_id = 1
+
+@bp.route('/', methods=['GET'])
+def status():
+    return "API Gerenciamento funcionando!"
+
+@bp.route('', methods=['POST'])
+def criar_professor():
+    global professor_id
+    data = request.json
+    p = {"id": professor_id, "nome": data["nome"], "disciplina": data["disciplina"]}
+    professores.append(p)
+    professor_id += 1
+    return jsonify({"id": p["id"], "mensagem": "Professor criado"}), 201
+
+@bp.route('', methods=['GET'])
+def listar_professores():
+    return jsonify(professores), 200
+
+@bp.route('/<int:id>', methods=['GET'])
+def obter_professor(id):
+    p = next((x for x in professores if x["id"] == id), None)
+    return (jsonify(p), 200) if p else (jsonify({"erro": "Não encontrado"}), 404)
